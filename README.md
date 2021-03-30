@@ -22,13 +22,15 @@ If you are using the last version of Visual Studio, make sure to have the last s
 
 # Architecture overview
 
-The architecture proposes a microservice oriented architecture implementation with multiple autonomous microservices owning its own data/db when needed, also implements an api aggregator to offer an unified entry point for the microservices
+The architecture proposes a microservice oriented architecture implementation with multiple autonomous microservices owning its own data/db when needed, also implements an api aggregator to offer an unified entry point for the microservices.
   
 ![](.resources/Architecture.png)
 
+Every endpoint has it swagger with examples.
+
 # Test
 
-Having the last .Net Core SDK, Docker and Docker Compose installed, run the following commands in the directory **/src/**
+Having the last version of .Net Core SDK, Docker and Docker Compose installed, run the following commands in the directory **/src/**
 
 ```
 docker-compose build
