@@ -1,0 +1,78 @@
+version: "3.5"
+
+services:
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    networks:
+      - quasar_default
+
+  radio:
+    image: radio:latest
+    build:
+      context: .
+      dockerfile: Aggregators/Radio/Radio.Api/Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - satellite
+      - location
+      - message
+      - messageStorage
+    environment:
+      - location=location
+      - message=message
+      - satellite=satellite
+      - messageStorage=messageStorage
+    networks:
+      - quasar_default
+
+  location:
+    image: location:latest
+    build:
+      context: .
+      dockerfile: Services/Location/Location.Api/Dockerfile
+    ports:
+      - "1000:80"
+    networks:
+      - quasar_default
+
+  message:
+    image: message:latest
+    build:
+      context: .
+      dockerfile: Services/Message/Message.Api/Dockerfile
+    ports:
+      - "1001:80"
+    networks:
+      - quasar_default
+
+  messageStorage:
+    image: message.storage:latest
+    build:
+      context: .
+      dockerfile: Services/MessageStorage/MessageStorage.Api/Dockerfile
+    ports:
+      - "1002:80"
+    depends_on:
+      - redis
+    environment:
+      - RedisCacheConnection=redis
+      - RedisPassword=
+    networks:
+      - quasar_default
+
+  satellite:
+    image: satellite:latest
+    build:
+      context: .
+      dockerfile: Services/Satellite/Satellite.Api/Dockerfile
+    ports:
+      - "1003:80"
+    networks:
+      - quasar_default
+
+networks:
+  quasar_default:
+    name: quasar_default
