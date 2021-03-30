@@ -28,10 +28,10 @@ The architecture proposes a microservice oriented architecture implementation wi
 
 # Test
 
-Having the last .Net Core SDK, Docker and Docker Compose installed, run this commands in the directory **/src/**
+Having the last .Net Core SDK, Docker and Docker Compose installed, run the following commands in the directory **/src/**
 
 ```
 docker-compose build
-docker-compose up
+docker-compose up -d
 dotnet test QuasarFire.sln
 ```
