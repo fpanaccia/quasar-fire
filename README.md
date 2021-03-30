@@ -5,7 +5,7 @@ Meli Challenge
 
 
 ## Getting Started
-Make sure you have Docker with Docker Compose [installed](https://docs.docker.com/get-docker/) in your environment. After that, you can run the below commands from the **/src/** directory and get started with the `Operation Quasar Fire` immediately
+Make sure you have Docker and Docker Compose [installed](https://docs.docker.com/get-docker/) in your environment. After that, you can run the below commands from the **/src/** directory and get started with the `Operation Quasar Fire` immediately
 
 ```
 docker-compose build
@@ -25,3 +25,13 @@ If you are using the last version of Visual Studio, make sure to have the last s
 The architecture proposes a microservice oriented architecture implementation with multiple autonomous microservices owning its own data/db when needed, also implements an api aggregator to offer an unified entry point for the microservices
   
 ![](.resources/Architecture.png)
+
+# Test
+
+Having the last .Net Core SDK, Docker and Docker Compose installed, run this commands in the directory **/src/**
+
+```
+docker-compose build
+docker-compose up
+dotnet test QuasarFire.sln
+```
